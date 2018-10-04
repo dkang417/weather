@@ -1,0 +1,13 @@
+<div class="container">
+  <div>{{city}}</div>
+  <!-- <div>{{weather}}</div> -->
+  <!-- <div>{{temp}}</div> -->
+  <li *ngFor="let num of temp">{{num}} Degrees Farenheit </li>
+
+  <div [hidden]="!chart">
+    <canvas #canvas id="canvas">{{ chart }}</canvas>
+  </div>
+
+  <div *ngIf="failedToLoad">Weather is not available. Please try again.</div>
+
+</div>

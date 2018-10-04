@@ -1,0 +1,23 @@
+<input type="text" placeholder="Enter City" [(ngModel)]="newCity">
+
+<div *ngIf="failed">Couldn't find city name</div>
+<button (click)="addCity()" class="btn btn-secondary" [disabled]="searching">Get Weather!</button>
+
+
+<div *ngIf="passed" class="container">
+  <div>
+    <h1>{{newCity}} </h1>
+  </div>
+  <!-- <div>{{weather}}</div> -->
+
+  <div>
+    <li *ngFor="let num of temp">{{num}} Degrees Farenheit </li>
+  </div>
+
+  <div [hidden]="!chart">
+    <canvas #canvas id="canvas">{{ chart }}</canvas>
+  </div>
+
+
+
+</div>
