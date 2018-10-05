@@ -8,47 +8,20 @@
     <th *ngFor="let date of weatherDates">{{date}}</th>
   </tr>
   <tr>
-    <td class="blue-text text-darken-2" *ngFor="let num of temp">{{num}}</td>
+    <td *ngFor="let n of desc">
+      <i [class]="weatherIcon(n)"></i>
+    </td>
   </tr>
   <tr>
-    <td *ngFor="let n of desc">{{n}}</td>
+    <td class="blue-text text-darken-2" *ngFor="let num of temp">{{num}} F</td>
   </tr>
+  <tr>
+    <td *ngFor="let n of desc">{{n | titleize}}</td>
+  </tr>
+
+
 </table>
 
 <div [hidden]="!chart">
   <canvas #canvas id="canvas">{{ chart }}</canvas>
 </div>
-
-
-<!-- <div *ngIf="passed" class="container"> -->
-<!-- <div>
-    <h1>{{newCity | titleize }} </h1>
-  </div> -->
-
-
-<!-- <table>
-      <tr>
-        <th *ngFor="let date of weatherDates">{{date}}</th>
-      </tr>
-      <tr>
-        <td *ngFor="let num of temp">{{num}}</td>
-      </tr>
-      <tr>
-        <td *ngFor="let n of desc">{{n}}</td>
-      </tr>
-
-    </table> -->
-
-
-
-<!-- <div *ngIf="chart">
-      <canvas id="canvas">{{ chart }}</canvas>
-    </div> -->
-
-
-
-
-
-
-
-<!-- </div> -->

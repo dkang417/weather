@@ -63,4 +63,28 @@ export class CityComponent implements OnInit {
 
 
   }
+
+  weatherIcon(any) {
+    switch (any) {
+      case 'light rain':
+        return 'wi wi-day-rain';
+      case 'shower rain':
+        return 'wi wi-day-rain';
+      case 'thunderstorm':
+        return 'wi wi-day-thunderstorm';
+      case 'clear sky':
+        return 'wi wi-day-sunny';
+      case 'few clouds':
+        return 'wi wi-night-partly-cloudy';
+      case 'scattered clouds':
+        return 'wi wi-day-cloudy';
+      case 'broken clouds':
+        return 'wi wi-day-cloudy';
+      case 'snow':
+        return 'wi wi-day-snow';
+      default:
+        return `wi wi-day-sunny`;
+    }
+  }
+
 }

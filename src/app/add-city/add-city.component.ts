@@ -10,7 +10,6 @@ import { Chart } from 'chart.js';
 export class AddCityComponent implements OnInit {
   newCity: string;
   failed: boolean;
-  // passed: boolean;
   searching: boolean;
 
   city = '';
@@ -20,17 +19,38 @@ export class AddCityComponent implements OnInit {
   temp = [];
   allInfo = [];
   desc = [];
+
+  lat: number;
+  lng: number;
+  cityname = '';
+
   constructor(public weatherService: WeatherService) { }
 
   ngOnInit() {
     this.city = 'New York';
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(position => {
+    //     this.lat = position.coords.latitude;
+    //     this.lng = position.coords.longitude;
+    //     console.log(position, 'here');
+    //     this.city = `lat=${this.lat}&long=${this.lng}`;
+    //     console.log(this.city, 'city here', this.cityname);
+    //   });
+    // } else {
+    //  this.lat = 40.73;
+    //  this.lng = -73.93;
+    // }
+
     this.weatherService.getCurrentWeather(this.city).subscribe(fullInfo => {
 
       this.temp = fullInfo[0];
       this.weatherDates = fullInfo[1];
       this.desc = fullInfo[2];
+      this.city = fullInfo[3];
+      this.cityname = this.city;
 
       this.showChart();
+
     },
       error => {
         console.log('error occured', error);
@@ -52,7 +72,8 @@ export class AddCityComponent implements OnInit {
       this.weatherDates = weatherInfo[1];
       this.desc = weatherInfo[2];
 
-      // this.passed = true;
+
+
       this.city = this.newCity;
       this.showChart();
     },
@@ -92,5 +113,29 @@ export class AddCityComponent implements OnInit {
       }
     });
   }
+
+  weatherIcon(any) {
+    switch (any) {
+      case 'light rain':
+        return 'wi wi-day-rain';
+      case 'shower rain':
+        return 'wi wi-day-rain';
+      case 'thunderstorm':
+        return 'wi wi-day-thunderstorm';
+      case 'clear sky':
+        return 'wi wi-day-sunny';
+      case 'few clouds':
+        return 'wi wi-night-partly-cloudy';
+      case 'scattered clouds':
+        return 'wi wi-day-cloudy';
+      case 'broken clouds':
+        return 'wi wi-day-cloudy';
+      case 'snow':
+        return 'wi wi-day-snow';
+      default:
+        return `wi wi-day-sunny`;
+    }
+  }
+
 
 }
