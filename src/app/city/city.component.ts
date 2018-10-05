@@ -13,26 +13,29 @@ export class CityComponent implements OnInit {
   temp = [];
   failedToLoad: boolean;
   chart = [];
-  weatherDates = ['monday', 'tuesday', 'wed', 'thurs', 'fri'];
+  weatherDates = [];
+  mockdates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
+  desc = [];
 
   constructor(public weatherService: WeatherService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.city = this.route.snapshot.params['city'];
 
-    this.weatherService.getCurrentWeather(this.city).subscribe(weatherInfo => {
-      // this.weather = weatherInfo.weather.description;
-      this.temp = weatherInfo;
+    this.weatherService.getCurrentWeather(this.city).subscribe(fullInfo => {
 
+      this.temp = fullInfo[0];
+      this.weatherDates = fullInfo[1];
+      this.desc = fullInfo[2];
 
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
-          labels: this.weatherDates,
+          labels: this.mockdates,
           datasets: [
             {
               data: this.temp,
-              borderColor: '#ffcc00',
+              borderColor: '#FFC0CB',
 
             },
           ]

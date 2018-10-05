@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CityComponent } from './city/city.component';
 import { LandingComponent } from './landing/landing.component';
 import { AddCityComponent } from './add-city/add-city.component';
+import { TitleizePipe } from './titleize.pipe';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AddCityComponent } from './add-city/add-city.component';
     AppComponent,
     CityComponent,
     LandingComponent,
-    AddCityComponent
+    AddCityComponent,
+    TitleizePipe
   ],
   imports: [
     BrowserModule,

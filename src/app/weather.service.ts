@@ -11,16 +11,36 @@ export class WeatherService {
 
   constructor(private httpClient: HttpClient) { }
   apiKey = '2413eb69409e25db6df9bb397d3d214d';
-  unit = 'imperial';
+
 
   getCurrentWeather(city: string): Observable<any> {
-    const apiCall = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${this.unit}&APPID=${this.apiKey}`;
+
+    const apiCall = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&APPID=${this.apiKey}`;
     console.log('apiCall', apiCall);
     return this.httpClient.get<any>(apiCall).pipe(
       map(resp => {
         console.log('response', resp);
-        const date1 = resp.list[0].dt_txt;
-        console.log(date1);
+        resp.list.map(res => res.dt);
+        const date1 = resp.list[0].dt;
+        const date2 = resp.list[8].dt;
+        const date3 = resp.list[16].dt;
+        const date4 = resp.list[24].dt;
+        const date5 = resp.list[32].dt;
+        const jsdate1 = new Date(date1 * 1000);
+        jsdate1.toLocaleTimeString('en', { year: '2-digit', month: 'short', day: 'numeric' });
+        console.log('jsdate1 here:', jsdate1);
+        const jsdate2 = new Date(date1 * 1000);
+        jsdate1.toLocaleTimeString('en', { year: '2-digit', month: 'short', day: 'numeric' });
+        const jsdate3 = new Date(date2 * 1000);
+        jsdate1.toLocaleTimeString('en', { year: '2-digit', month: 'short', day: 'numeric' });
+        const jsdate4 = new Date(date3 * 1000);
+        jsdate1.toLocaleTimeString('en', { year: '2-digit', month: 'short', day: 'numeric' });
+        const jsdate5 = new Date(date4 * 1000);
+        jsdate1.toLocaleTimeString('en', { year: '2-digit', month: 'short', day: 'numeric' });
+        const alldates = [];
+        alldates.push(jsdate1, jsdate2, jsdate3, jsdate4, jsdate5);
+
+
         const temp1 = resp.list[0].main.temp;
         const temp2 = resp.list[1].main.temp;
         const temp3 = resp.list[2].main.temp;
@@ -28,8 +48,18 @@ export class WeatherService {
         const temp5 = resp.list[4].main.temp;
 
         const weatherInfo = [temp1, temp2, temp3, temp4, temp5];
-        console.log(weatherInfo);
-        return weatherInfo;
+
+        const des1 = resp.list[0].weather[0].description;
+        const des2 = resp.list[1].weather[0].description;
+        const des3 = resp.list[2].weather[0].description;
+        const des4 = resp.list[3].weather[0].description;
+        const des5 = resp.list[4].weather[0].description;
+        const fulldesc = [des1, des2, des3, des4, des5];
+
+        const fullInfo = [weatherInfo, alldates, fulldesc];
+
+
+        return fullInfo;
       }));
   }
 }

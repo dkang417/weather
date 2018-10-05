@@ -10,18 +10,36 @@ import { Chart } from 'chart.js';
 export class AddCityComponent implements OnInit {
   newCity: string;
   failed: boolean;
-  passed: boolean;
+  // passed: boolean;
   searching: boolean;
 
   city = '';
-  temp = [];
   chart = [];
-  weatherDates = ['monday', 'tuesday', 'wed', 'thurs', 'fri'];
-
+  weatherDates = [];
+  mockdates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
+  temp = [];
+  allInfo = [];
+  desc = [];
   constructor(public weatherService: WeatherService) { }
 
   ngOnInit() {
+    this.city = 'New York';
+    this.weatherService.getCurrentWeather(this.city).subscribe(fullInfo => {
+
+      this.temp = fullInfo[0];
+      this.weatherDates = fullInfo[1];
+      this.desc = fullInfo[2];
+
+      this.showChart();
+    },
+      error => {
+        console.log('error occured', error);
+      });
+
+
   }
+
+
   addCity() {
     this.failed = false;
     this.searching = true;
@@ -30,44 +48,49 @@ export class AddCityComponent implements OnInit {
     this.weatherService.getCurrentWeather(city).subscribe(weatherInfo => {
       console.log('found the city');
       this.searching = false;
-      // this.weather = weatherInfo.weather.description;
-      this.temp = weatherInfo;
-      this.passed = true;
+      this.temp = weatherInfo[0];
+      this.weatherDates = weatherInfo[1];
+      this.desc = weatherInfo[2];
+
+      // this.passed = true;
       this.city = this.newCity;
-
-      this.chart = new Chart('canvas', {
-        type: 'line',
-        data: {
-          labels: this.weatherDates,
-          datasets: [
-            {
-              data: this.temp,
-              borderColor: '#ffcc00',
-
-            },
-          ]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              display: true
-            }],
-            yAxes: [{
-              display: true
-            }],
-          }
-        }
-      });
-
+      this.showChart();
     },
       error => {
         console.log('could not add the city');
         this.failed = true;
         this.searching = false;
       });
+
+  }
+
+  showChart() {
+    this.chart = new Chart('canvas', {
+      type: 'line',
+      data: {
+        labels: this.mockdates,
+        datasets: [
+          {
+            data: this.temp,
+            borderColor: '#FFC0CB',
+
+          },
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }],
+        }
+      }
+    });
   }
 
 }

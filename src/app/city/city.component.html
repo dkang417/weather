@@ -1,8 +1,21 @@
 <div class="container">
-  <div>{{city}}</div>
-  <!-- <div>{{weather}}</div> -->
-  <!-- <div>{{temp}}</div> -->
-  <li *ngFor="let num of temp">{{num}} Degrees Farenheit </li>
+  <h5>
+    <a class="nav-link" routerLink="/">Back</a>
+  </h5>
+  <h1 class="center-align">{{city | titleize}}</h1>
+  <table class="center">
+    <tr>
+      <th *ngFor="let date of weatherDates">{{date}}</th>
+    </tr>
+    <tr>
+      <td class="blue-text text-darken-2" *ngFor="let num of temp">{{num}}</td>
+    </tr>
+    <tr>
+      <td *ngFor="let n of desc">{{n}}</td>
+    </tr>
+
+  </table>
+
 
   <div [hidden]="!chart">
     <canvas #canvas id="canvas">{{ chart }}</canvas>
