@@ -19,7 +19,7 @@ export class AddCityComponent implements OnInit {
   storageName = 'cities';
   chart = [];
   weatherDates = [];
-  mockdates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
+  mockdates = ['now', '+24hrs', '+48hrs', '+72hrs', '+96hrs'];
   temp = [];
   allInfo = [];
   desc = [];
@@ -56,7 +56,6 @@ export class AddCityComponent implements OnInit {
       this.cities.push(city);
       localStorage.setItem(this.storageName, JSON.stringify(this.cities));
     }
-    // this.citySavedService.saveCity(city);
     console.log('this is the city:',  city, 'here are the cities:', this.cities);
   }
   removeCity() {

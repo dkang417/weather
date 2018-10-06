@@ -36,6 +36,7 @@ export class CityComponent implements OnInit {
             {
               data: this.temp,
               borderColor: '#FFC0CB',
+              backgroundColor: '#0984e3'
 
             },
           ]
@@ -59,8 +60,6 @@ export class CityComponent implements OnInit {
         console.log('error occured', error);
         this.failedToLoad = true;
       });
-
-
 
   }
 
