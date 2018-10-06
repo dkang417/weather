@@ -54,8 +54,8 @@ export class WeatherService {
         const des4 = resp.list[3].weather[0].description;
         const des5 = resp.list[4].weather[0].description;
         const fulldesc = [des1, des2, des3, des4, des5];
-        const cityname = resp.city.name;
-        const fullInfo = [weatherInfo, alldates, fulldesc, cityname];
+
+        const fullInfo = [weatherInfo, alldates, fulldesc];
 
 
         return fullInfo;

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import { Chart } from 'chart.js';
 
+
+
 @Component({
   selector: 'app-add-city',
   templateUrl: './add-city.component.html',
@@ -11,8 +13,10 @@ export class AddCityComponent implements OnInit {
   newCity: string;
   failed: boolean;
   searching: boolean;
-
+  homecity = '';
   city = '';
+  cities = [];
+  storageName = 'cities';
   chart = [];
   weatherDates = [];
   mockdates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
@@ -20,37 +24,23 @@ export class AddCityComponent implements OnInit {
   allInfo = [];
   desc = [];
 
-  lat: number;
-  lng: number;
-  cityname = '';
-
-  constructor(public weatherService: WeatherService) { }
+  constructor(public weatherService: WeatherService) {
+    const existingCities = JSON.parse(localStorage.getItem(this.storageName));
+    if (existingCities) {
+      this.cities = existingCities;
+    }
+    console.log('Stored cities', this.cities);
+   }
 
   ngOnInit() {
     this.city = 'New York';
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(position => {
-    //     this.lat = position.coords.latitude;
-    //     this.lng = position.coords.longitude;
-    //     console.log(position, 'here');
-    //     this.city = `lat=${this.lat}&long=${this.lng}`;
-    //     console.log(this.city, 'city here', this.cityname);
-    //   });
-    // } else {
-    //  this.lat = 40.73;
-    //  this.lng = -73.93;
-    // }
-
     this.weatherService.getCurrentWeather(this.city).subscribe(fullInfo => {
 
       this.temp = fullInfo[0];
       this.weatherDates = fullInfo[1];
       this.desc = fullInfo[2];
-      this.city = fullInfo[3];
-      this.cityname = this.city;
 
       this.showChart();
-
     },
       error => {
         console.log('error occured', error);
@@ -58,6 +48,27 @@ export class AddCityComponent implements OnInit {
 
 
   }
+
+
+  saveCity() {
+    const city = this.newCity;
+    if (!this.cities.includes(city)) {
+      this.cities.push(city);
+      localStorage.setItem(this.storageName, JSON.stringify(this.cities));
+    }
+    // this.citySavedService.saveCity(city);
+    console.log('this is the city:',  city, 'here are the cities:', this.cities);
+  }
+  removeCity() {
+    const city = this.newCity;
+    this.cities = this.cities.filter(c => c.toLocaleLowerCase() !== city.toLocaleLowerCase());
+    localStorage.setItem(this.storageName, JSON.stringify(this.cities));
+  }
+  clearFavorites() {
+    this.cities = [];
+    localStorage.clear();
+  }
+
 
 
   addCity() {
@@ -94,7 +105,7 @@ export class AddCityComponent implements OnInit {
           {
             data: this.temp,
             borderColor: '#FFC0CB',
-
+            backgroundColor: '#0984e3'
           },
         ]
       },

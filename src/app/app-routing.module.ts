@@ -17,11 +17,7 @@ const routes: Routes = [
     component: CityComponent,
     children: []
   },
-  {
-    path: 'add-city',
-    pathMatch: 'full',
-    component: AddCityComponent
-  }
+
 ];
 
 @NgModule({

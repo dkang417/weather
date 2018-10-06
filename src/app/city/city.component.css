@@ -1,4 +1,11 @@
 i {
-  font-size: 80px;
+  font-size: 20px;
   color: pink;
+}
+.temp {
+  font-size: 15px;
+}
+.chart {
+  margin-top: 4em;
+
 }

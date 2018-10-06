@@ -10,6 +10,7 @@ import { CityComponent } from './city/city.component';
 import { LandingComponent } from './landing/landing.component';
 import { AddCityComponent } from './add-city/add-city.component';
 import { TitleizePipe } from './titleize.pipe';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TitleizePipe } from './titleize.pipe';
     CityComponent,
     LandingComponent,
     AddCityComponent,
-    TitleizePipe
+    TitleizePipe,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
