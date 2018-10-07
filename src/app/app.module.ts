@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { WeatherService } from './weather.service';
+import { WeatherService } from '../app/shared/services/weather.service';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
@@ -9,18 +9,20 @@ import { AppComponent } from './app.component';
 import { CityComponent } from './city/city.component';
 import { LandingComponent } from './landing/landing.component';
 import { AddCityComponent } from './add-city/add-city.component';
-import { TitleizePipe } from './titleize.pipe';
+import { TitleizePipe } from '../app/shared/pipes/titleize.pipe';
 import { FavoritesComponent } from './favorites/favorites.component';
 
 
+import * as fromShared from './shared';
+
 @NgModule({
   declarations: [
+    ...fromShared.declarations,
     AppComponent,
     CityComponent,
     LandingComponent,
     AddCityComponent,
-    TitleizePipe,
-    FavoritesComponent
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [WeatherService],
+  providers: [...fromShared.providers],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

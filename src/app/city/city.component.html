@@ -1,7 +1,12 @@
+<h5>
+  <a class="nav-link" routerLink="/">Back</a>
+</h5>
+
+
+
 <div class="container">
-  <h5>
-    <a class="nav-link" routerLink="/">Back</a>
-  </h5>
+
+  <div *ngIf="failed">Couldn't find weather information for {{city | titleize }}</div>
 
   <h5 class="center-align">{{city | titleize }}</h5>
 
@@ -23,11 +28,9 @@
       <td *ngFor="let n of desc">{{n | titleize}}</td>
     </tr>
 
-
   </table>
 
   <div [hidden]="!chart" class="chart">
     <canvas #canvas id="canvas">{{ chart }}</canvas>
   </div>
-
 </div>

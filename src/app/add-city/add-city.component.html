@@ -4,7 +4,11 @@
 <button (click)="addCity()" class="btn btn-secondary" [disabled]="searching">Get Weather!</button>
 
 
+
+
 <h5 class="center-align">{{city | titleize }}</h5>
+
+
 
 <table class="center highlight responsive-table">
   <tr>
@@ -27,6 +31,8 @@
 
 </table>
 
-<div [hidden]="!chart" class="chart">
-  <canvas #canvas id="canvas">{{ chart }}</canvas>
+<div class="main">
+  <div [hidden]="!chart" class="chart">
+    <canvas #canvas id="canvas">{{ chart }}</canvas>
+  </div>
 </div>

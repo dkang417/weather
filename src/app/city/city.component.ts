@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../weather.service';
+import { WeatherService } from '../shared/services';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js';
 
@@ -11,7 +11,8 @@ import { Chart } from 'chart.js';
 export class CityComponent implements OnInit {
   city = '';
   temp = [];
-  failedToLoad: boolean;
+
+  failed: boolean;
   chart = [];
   weatherDates = [];
   mockdates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
@@ -20,6 +21,7 @@ export class CityComponent implements OnInit {
   constructor(public weatherService: WeatherService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.failed = false;
     this.city = this.route.snapshot.params['city'];
 
     this.weatherService.getCurrentWeather(this.city).subscribe(fullInfo => {
@@ -58,7 +60,7 @@ export class CityComponent implements OnInit {
     },
       error => {
         console.log('error occured', error);
-        this.failedToLoad = true;
+        this.failed = true;
       });
 
   }

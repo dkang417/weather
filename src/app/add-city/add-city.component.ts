@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../weather.service';
+import { WeatherService } from '../shared/services';
 import { Chart } from 'chart.js';
 
 
@@ -13,10 +13,7 @@ export class AddCityComponent implements OnInit {
   newCity: string;
   failed: boolean;
   searching: boolean;
-  homecity = '';
   city = '';
-  cities = [];
-  storageName = 'cities';
   chart = [];
   weatherDates = [];
   mockdates = ['now', '+24hrs', '+48hrs', '+72hrs', '+96hrs'];
@@ -24,13 +21,18 @@ export class AddCityComponent implements OnInit {
   allInfo = [];
   desc = [];
 
-  constructor(public weatherService: WeatherService) {
-    const existingCities = JSON.parse(localStorage.getItem(this.storageName));
-    if (existingCities) {
-      this.cities = existingCities;
-    }
-    console.log('Stored cities', this.cities);
-   }
+
+    // cities = [];
+  // storageName = 'cities';
+   // homecity = '';
+
+  constructor(public weatherService: WeatherService) { }
+  //   const existingCities = JSON.parse(localStorage.getItem(this.storageName));
+  //   if (existingCities) {
+  //     this.cities = existingCities;
+  //   }
+  //   console.log('Stored cities', this.cities);
+  //  }
 
   ngOnInit() {
     this.city = 'New York';
@@ -50,26 +52,6 @@ export class AddCityComponent implements OnInit {
   }
 
 
-  saveCity() {
-    const city = this.newCity;
-    if (!this.cities.includes(city)) {
-      this.cities.push(city);
-      localStorage.setItem(this.storageName, JSON.stringify(this.cities));
-    }
-    console.log('this is the city:',  city, 'here are the cities:', this.cities);
-  }
-  removeCity() {
-    const city = this.newCity;
-    this.cities = this.cities.filter(c => c.toLocaleLowerCase() !== city.toLocaleLowerCase());
-    localStorage.setItem(this.storageName, JSON.stringify(this.cities));
-  }
-  clearFavorites() {
-    this.cities = [];
-    localStorage.clear();
-  }
-
-
-
   addCity() {
     this.failed = false;
     this.searching = true;
@@ -81,8 +63,6 @@ export class AddCityComponent implements OnInit {
       this.temp = weatherInfo[0];
       this.weatherDates = weatherInfo[1];
       this.desc = weatherInfo[2];
-
-
 
       this.city = this.newCity;
       this.showChart();
