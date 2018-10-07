@@ -2,12 +2,8 @@
   <a class="nav-link" routerLink="/">Back</a>
 </h5>
 
-
-
 <div class="container">
-
   <div *ngIf="failed">Couldn't find weather information for {{city | titleize }}</div>
-
   <h5 class="center-align">{{city | titleize }}</h5>
 
   <table class="center highlight responsive-table">
@@ -19,15 +15,12 @@
         <i [class]="weatherIcon(n)"></i>
       </td>
     </tr>
-
     <tr>
       <td class="blue-text text-darken-2 temp" *ngFor="let num of temp">{{num}} F</td>
     </tr>
-
     <tr>
       <td *ngFor="let n of desc">{{n | titleize}}</td>
     </tr>
-
   </table>
 
   <div [hidden]="!chart" class="chart">

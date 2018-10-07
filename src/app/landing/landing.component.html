@@ -1,8 +1,18 @@
-<div id="wrapper">
-  <div id="header left">
+<div class="container">
+
+  <div class="left-align">
     <h4>Pretty Accurate Weather</h4>
-    <h6>Search for a city name to find the 5 day forecast</h6>
+    <h6>Search by city name to find the 5 day forecast</h6>
   </div>
+
+  <div *ngIf="available" class="right-align">
+    <p>Local Weather: {{temp}}
+      <i [class]="weatherIcon()"></i>
+    </p>
+  </div>
+
+
+
   <div class="row">
     <div class="col s12 m9">
       <app-add-city></app-add-city>

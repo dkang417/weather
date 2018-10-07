@@ -5,5 +5,4 @@ export const pipes: any[] = [
   TitleizePipe
 ];
 
-
 export * from './titleize.pipe';

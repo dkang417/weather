@@ -11,7 +11,6 @@ import { Chart } from 'chart.js';
 export class CityComponent implements OnInit {
   city = '';
   temp = [];
-
   failed: boolean;
   chart = [];
   weatherDates = [];
@@ -25,11 +24,9 @@ export class CityComponent implements OnInit {
     this.city = this.route.snapshot.params['city'];
 
     this.weatherService.getCurrentWeather(this.city).subscribe(fullInfo => {
-
       this.temp = fullInfo[0];
       this.weatherDates = fullInfo[1];
       this.desc = fullInfo[2];
-
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
@@ -39,7 +36,6 @@ export class CityComponent implements OnInit {
               data: this.temp,
               borderColor: '#FFC0CB',
               backgroundColor: '#0984e3'
-
             },
           ]
         },
@@ -57,6 +53,7 @@ export class CityComponent implements OnInit {
           }
         }
       });
+
     },
       error => {
         console.log('error occured', error);
@@ -87,5 +84,6 @@ export class CityComponent implements OnInit {
         return `wi wi-day-sunny`;
     }
   }
+
 
 }

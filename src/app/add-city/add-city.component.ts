@@ -39,7 +39,6 @@ export class AddCityComponent implements OnInit {
     this.searching = true;
     const city = this.newCity;
     this.weatherService.getCurrentWeather(city).subscribe(weatherInfo => {
-      console.log('found the city');
       this.searching = false;
       this.temp = weatherInfo[0];
       this.weatherDates = weatherInfo[1];
