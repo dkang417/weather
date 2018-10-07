@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CityComponent } from './city/city.component';
 import { LandingComponent } from './landing/landing.component';
 import { AddCityComponent } from './add-city/add-city.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -17,6 +19,10 @@ const routes: Routes = [
     component: CityComponent,
     children: []
   },
+  {
+    path: '**',
+    component: NotfoundComponent
+  }
 
 ];
 

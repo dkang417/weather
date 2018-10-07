@@ -14,6 +14,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 
 
 import * as fromShared from './shared';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import * as fromShared from './shared';
     LandingComponent,
     AddCityComponent,
     FavoritesComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
