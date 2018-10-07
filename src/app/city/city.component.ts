@@ -15,7 +15,7 @@ export class CityComponent implements OnInit {
   failed: boolean;
   chart = [];
   weatherDates = [];
-  mockdates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
+  chartDates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
   desc = [];
 
   constructor(public weatherService: WeatherService, private route: ActivatedRoute) { }
@@ -33,7 +33,7 @@ export class CityComponent implements OnInit {
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
-          labels: this.mockdates,
+          labels: this.chartDates,
           datasets: [
             {
               data: this.temp,

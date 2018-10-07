@@ -13,7 +13,6 @@ export class WeatherService {
   apiKey = '2413eb69409e25db6df9bb397d3d214d';
 
   getCurrentWeather(city: string): Observable<any> {
-
     const apiCall = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&APPID=${this.apiKey}`;
     // console.log('apiCall', apiCall);
     return this.httpClient.get<any>(apiCall).pipe(
@@ -45,4 +44,5 @@ export class WeatherService {
         return fullInfo;
       }));
   }
+
 }

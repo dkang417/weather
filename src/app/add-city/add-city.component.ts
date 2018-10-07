@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../shared/services';
 import { Chart } from 'chart.js';
 
-
-
 @Component({
   selector: 'app-add-city',
   templateUrl: './add-city.component.html',
@@ -11,59 +9,41 @@ import { Chart } from 'chart.js';
 })
 export class AddCityComponent implements OnInit {
   newCity: string;
-  failed: boolean;
-  searching: boolean;
   city = '';
   chart = [];
   weatherDates = [];
-  mockdates = ['now', '+24hrs', '+48hrs', '+72hrs', '+96hrs'];
+  chartDates = ['now', '+24hrs', '+48hrs', '+72hrs', '+96hrs'];
   temp = [];
   allInfo = [];
   desc = [];
-
-
-    // cities = [];
-  // storageName = 'cities';
-   // homecity = '';
+  failed: boolean;
+  searching: boolean;
 
   constructor(public weatherService: WeatherService) { }
-  //   const existingCities = JSON.parse(localStorage.getItem(this.storageName));
-  //   if (existingCities) {
-  //     this.cities = existingCities;
-  //   }
-  //   console.log('Stored cities', this.cities);
-  //  }
 
   ngOnInit() {
     this.city = 'New York';
     this.weatherService.getCurrentWeather(this.city).subscribe(fullInfo => {
-
       this.temp = fullInfo[0];
       this.weatherDates = fullInfo[1];
       this.desc = fullInfo[2];
-
       this.showChart();
     },
       error => {
         console.log('error occured', error);
       });
-
-
   }
-
 
   addCity() {
     this.failed = false;
     this.searching = true;
     const city = this.newCity;
-
     this.weatherService.getCurrentWeather(city).subscribe(weatherInfo => {
       console.log('found the city');
       this.searching = false;
       this.temp = weatherInfo[0];
       this.weatherDates = weatherInfo[1];
       this.desc = weatherInfo[2];
-
       this.city = this.newCity;
       this.showChart();
     },
@@ -72,14 +52,13 @@ export class AddCityComponent implements OnInit {
         this.failed = true;
         this.searching = false;
       });
-
   }
 
   showChart() {
     this.chart = new Chart('canvas', {
       type: 'line',
       data: {
-        labels: this.mockdates,
+        labels: this.chartDates,
         datasets: [
           {
             data: this.temp,

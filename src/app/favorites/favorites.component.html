@@ -1,28 +1,17 @@
 <div class="container">
   <i class="wi wi-day-cloudy icon"></i>
   <h5>My Cities</h5>
-
-
   <input type="text" placeholder="Update Cities" [(ngModel)]="newCity">
-
-
-
   <a (click)="saveCity()" class="btn-floating btn-small waves-effect">
     <i class="material-icons">add</i>
   </a>
-
   <a (click)="removeCity()" class="btn-floating btn-small waves-light red">
     <i class="material-icons">remove</i>
   </a>
-
-
-
   <div class="row">
-    <button class="waves-effect waves-teal btn-flat" (click)="clearFavorites()">Clear All</button>
+    <button class="waves-effect waves-teal btn-flat" (click)="clearFavorites()">Clear List</button>
   </div>
-
   <div *ngFor="let city of cities" class="collection">
     <a routerLink="/city/{{city}}" class="collection-item blue-text">{{city | titleize}}</a>
   </div>
-
 </div>

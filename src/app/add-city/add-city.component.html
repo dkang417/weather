@@ -1,15 +1,8 @@
 <input type="text" placeholder="Enter City" [(ngModel)]="newCity">
-
 <div *ngIf="failed">Couldn't find city name</div>
 <button (click)="addCity()" class="btn btn-secondary" [disabled]="searching">Get Weather!</button>
 
-
-
-
 <h5 class="center-align">{{city | titleize }}</h5>
-
-
-
 <table class="center highlight responsive-table">
   <tr>
     <th *ngFor="let date of weatherDates">{{date | date: 'MMM d'}}</th>
@@ -19,16 +12,12 @@
       <i [class]="weatherIcon(n)"></i>
     </td>
   </tr>
-
   <tr>
     <td class="blue-text text-darken-2 temp" *ngFor="let num of temp">{{num}} F</td>
   </tr>
-
   <tr>
     <td *ngFor="let n of desc">{{n | titleize}}</td>
   </tr>
-
-
 </table>
 
 <div class="main">
