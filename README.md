@@ -1,6 +1,5 @@
 # P.A.W  
 Pretty Accurate Weather app 
-5 day weather forecast responsive app.
 PAW is a Angular project that makes use of the OpenWeatherMap forecast API to retrieve a 5 day weather forecast.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
