@@ -46,13 +46,9 @@ export class WeatherService {
 
   getLocalWeather(lat: number, lon: number): Observable<any> {
     const apiCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&APPID=${this.apiKey}`;
-    // console.log('apiCall', apiCall);
     return this.httpClient.get<any>(apiCall).pipe(
       map(resp => {
-        // console.log('response', resp);
-        // temp
-        const temp1 = resp.list[0].main.temp;
-        const weatherInfo = [temp1];
+        const weatherInfo = resp.list[0].main.temp;
         // description
         const des1 = resp.list[0].weather[0].description;
         // full info we need

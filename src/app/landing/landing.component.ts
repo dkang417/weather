@@ -21,7 +21,6 @@ export class LandingComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lon = position.coords.longitude;
-        console.log(this.lat, this.lon, 'here is the lat and lng');
         this.weatherService.getLocalWeather(this.lat, this.lon).subscribe(fullInfo => {
           this.temp = fullInfo[0];
           this.desc = fullInfo[1];

@@ -11,11 +11,12 @@ import { Chart } from 'chart.js';
 export class CityComponent implements OnInit {
   city = '';
   temp = [];
+  weatherDates = [];
+  desc = [];
   failed: boolean;
   chart = [];
-  weatherDates = [];
   chartDates = ['now', '+24hrs', '+24hrs', '+24hrs', '+24hrs'];
-  desc = [];
+
 
   constructor(public weatherService: WeatherService, private route: ActivatedRoute) { }
 
@@ -27,6 +28,8 @@ export class CityComponent implements OnInit {
       this.temp = fullInfo[0];
       this.weatherDates = fullInfo[1];
       this.desc = fullInfo[2];
+
+      // weather chart
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
