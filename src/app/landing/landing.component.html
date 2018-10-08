@@ -5,17 +5,19 @@
       <h6>Search by city name to find the 5 day forecast</h6>
     </div>
 
-    <div *ngIf="available" class="center-align col  s12 m3">
+
+    <!-- local weather not used in production due to https -->
+    <!-- <div *ngIf="available" class="center-align col  s12 m3">
       <p>Local Weather: {{temp}}
         <i [class]="weatherIcon()"></i>
       </p>
-    </div>
+    </div> -->
 
     <div class="row">
       <div class="col s12 m9">
         <app-add-city></app-add-city>
       </div>
-      <div class="col  s12 m3">
+      <div class="col s12 m3">
         <app-favorites></app-favorites>
       </div>
     </div>

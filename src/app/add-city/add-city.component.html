@@ -1,5 +1,5 @@
 <input type="text" placeholder="Enter City" [(ngModel)]="newCity">
-<div *ngIf="failed">Couldn't find city name</div>
+<div *ngIf="failed" class="noCity">Couldn't Find City Name</div>
 <button (click)="addCity()" class="btn btn-secondary" [disabled]="searching">Get Weather!</button>
 
 <h5 class="center-align">{{city | titleize }}</h5>
@@ -20,7 +20,7 @@
   </tr>
 </table>
 
-<div class="main z-depth-5">
+<div class="main z-depth-2">
   <div [hidden]="!chart" class="chart">
     <canvas #canvas id="canvas">{{ chart }}</canvas>
   </div>

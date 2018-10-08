@@ -11,3 +11,6 @@ i {
 .main {
   margin-bottom: 3em;
 }
+.noCity {
+  color: red;
+}
