@@ -43,19 +43,19 @@ export class WeatherService {
   }
 
 
-
-  getLocalWeather(lat: number, lon: number): Observable<any> {
-    const apiCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&APPID=${this.apiKey}`;
-    return this.httpClient.get<any>(apiCall).pipe(
-      map(resp => {
-        const weatherInfo = resp.list[0].main.temp;
-        // description
-        const des1 = resp.list[0].weather[0].description;
-        // full info we need
-        const fullInfo = [weatherInfo, des1];
-        return fullInfo;
-      }));
-  }
+  // unable to implement getCurrentPosition() for version 1 due to sercurity reasons
+  // getLocalWeather(lat: number, lon: number): Observable<any> {
+  //   const apiCall = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&APPID=${this.apiKey}`;
+  //   return this.httpClient.get<any>(apiCall).pipe(
+  //     map(resp => {
+  //       const weatherInfo = resp.list[0].main.temp;
+  //       // description
+  //       const des1 = resp.list[0].weather[0].description;
+  //       // full info we need
+  //       const fullInfo = [weatherInfo, des1];
+  //       return fullInfo;
+  //     }));
+  // }
 
 
 }
